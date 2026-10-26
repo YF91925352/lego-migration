@@ -108,3 +108,12 @@ def test_verification_fails_when_a_row_goes_missing(workdir):
     r = verify(workdir / "out" / "legacy", workdir / "out")
     assert not r["ok"]
     assert [c["check"] for c in r["checks"] if not c["ok"]][0] == "rows reconcile: set_parts"
+
+
+def test_flow_diagram_shows_where_every_row_went(workdir):
+    from legomig.report import to_mermaid
+    export_and_migrate(workdir, defects=1)
+    md = to_mermaid(verify(workdir / "out" / "legacy", workdir / "out"))
+    assert md.startswith("```mermaid\nflowchart LR")
+    assert "**58 = 40 migrated + 1 merged + 17 rejected.**" in md
+    assert "28/28 checks passed" in md

@@ -40,7 +40,10 @@ def main(argv=None) -> int:
             (a.reports / "migration_report.md").write_text(to_markdown(r), encoding="utf-8")
             (a.reports / "migration_report.json").write_text(json.dumps(r, indent=1, default=str), encoding="utf-8")
             if a.reports == ROOT / "reports":
-                _update_readme(to_markdown(r))
+                from .report import to_mermaid
+                body = to_markdown(r).split("\n", 1)[1].replace("\n## ", "\n#### ")  # drop title, demote headings
+                _update_readme("REPORT", body)
+                _update_readme("FLOW", to_mermaid(r))
             for c in r["checks"]:
                 print(f"  {'✓' if c['ok'] else '✗'} {c['check']}: {c['detail']}")
             print(f"  report: {a.reports / 'migration_report.md'}")
@@ -55,14 +58,14 @@ def main(argv=None) -> int:
     return 0
 
 
-def _update_readme(report_md: str) -> None:
-    """Put the latest report between the markers in README.md, so the numbers there are never typed by hand."""
+def _update_readme(name: str, body: str) -> None:
+    """Replace the text between <!-- NAME:START --> and <!-- NAME:END --> in README.md,
+    so the numbers there are never typed by hand."""
     readme = ROOT / "README.md"
-    start, end = "<!-- REPORT:START -->", "<!-- REPORT:END -->"
+    start, end = f"<!-- {name}:START -->", f"<!-- {name}:END -->"
     text = readme.read_text(encoding="utf-8") if readme.exists() else ""
     if start not in text or end not in text:
         return
-    body = report_md.split("\n", 1)[1].replace("\n## ", "\n#### ")  # drop the title, demote headings
     head, rest = text.split(start, 1)
     readme.write_text(f"{head}{start}\n{body.strip()}\n{end}{rest.split(end, 1)[1]}", encoding="utf-8")
 
