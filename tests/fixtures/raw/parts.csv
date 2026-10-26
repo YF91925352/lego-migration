@@ -1,0 +1,9 @@
+part_num,name,part_cat_id,part_material
+b2x4,Block 2 x 4,11,Plastic
+b2x2,Block 2 x 2,11,Plastic
+b1x2,Block 1 x 2,11,Plastic
+p2x4,Flat 2 x 4,14,Plastic
+p1x1,Flat 1 x 1,14,Plastic
+p1x6,Flat 1 x 6,14,Plastic
+t1x2,Smooth 1 x 2,19,Plastic
+t2x2,Smooth 2 x 2,19,Plastic

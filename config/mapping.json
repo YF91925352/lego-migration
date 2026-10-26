@@ -1,0 +1,55 @@
+{
+  "_comment": "Human-confirmed mapping from legacy export fields to the target model. The pipeline reads only this file. scripts/suggest_mapping.py can propose one with an LLM for review.",
+  "colors": {
+    "source": "catalog.json#colours",
+    "fields": {
+      "ColourID":    {"to": "color_id", "type": "int"},
+      "ColourName":  {"to": "name",     "type": "str"},
+      "RGB":         {"to": "rgb",      "type": "hex_rgb"},
+      "Transparent": {"to": "is_trans", "type": "yn_bool"}
+    }
+  },
+  "themes": {
+    "source": "catalog.json#themes",
+    "fields": {
+      "ThemeID":     {"to": "theme_id",  "type": "int"},
+      "ThemeName":   {"to": "name",      "type": "str"},
+      "ParentTheme": {"to": "parent_id", "type": "int_optional"}
+    }
+  },
+  "part_categories": {
+    "source": "catalog.json#categories",
+    "fields": {
+      "CatID":   {"to": "part_cat_id", "type": "int"},
+      "CatName": {"to": "name",        "type": "str"}
+    }
+  },
+  "parts": {
+    "source": "catalog.json#parts",
+    "fields": {
+      "PartNo":      {"to": "part_num",    "type": "str"},
+      "PartDesc":    {"to": "name",        "type": "str"},
+      "CategoryRef": {"to": "part_cat_id", "type": "int"}
+    }
+  },
+  "sets": {
+    "source": "sets.jsonl",
+    "fields": {
+      "SetNo":      {"to": "set_num",   "type": "str"},
+      "SetName":    {"to": "name",      "type": "str"},
+      "Yr":         {"to": "year",      "type": "int"},
+      "ThemeRef":   {"to": "theme_id",  "type": "int"},
+      "PieceCount": {"to": "num_parts", "type": "int"}
+    }
+  },
+  "set_parts": {
+    "source": "sets.jsonl#Inventory",
+    "fields": {
+      "SetNo":     {"to": "set_num",  "type": "str"},
+      "PartNo":    {"to": "part_num", "type": "str"},
+      "ColourRef": {"to": "color_id", "type": "int"},
+      "Qty":       {"to": "quantity", "type": "int"},
+      "Spare":     {"to": "is_spare", "type": "yn_bool"}
+    }
+  }
+}

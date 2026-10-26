@@ -1,0 +1,20 @@
+# Downloaded source data and all pipeline output stay local
+data/
+out/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# AI mapping suggestions are reviewed locally, then merged by hand into config/mapping.json
+config/mapping.suggested.json
+
+.DS_Store
+
+# Local run logs
+*_log.txt
+
+# File-transfer scratch folder
+.sync/

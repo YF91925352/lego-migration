@@ -1,0 +1,12 @@
+set_num,name,year,theme_id,num_parts,img_url
+100-1,Little Pier,1978,2,12,https://example.invalid/a.jpg
+101-1,Signal Box,1985,3,9,https://example.invalid/b.jpg
+102-1,Lunar Hopper,1989,4,7,https://example.invalid/c.jpg
+103-1,Gatehouse,1992,5,15,https://example.invalid/d.jpg
+104-1,Ferry Dock,1999,2,10,https://example.invalid/e.jpg
+105-1,Orbit Lab,2004,4,8,https://example.invalid/f.jpg
+106-1,Corner Shop,2011,1,11,https://example.invalid/g.jpg
+107-1,Night Train,2016,3,14,https://example.invalid/h.jpg
+108-1,Tower Wall,2020,5,6,https://example.invalid/i.jpg
+109-1,Star Relay,2023,4,9,https://example.invalid/j.jpg
+110-1,Empty Box,2024,1,0,https://example.invalid/k.jpg

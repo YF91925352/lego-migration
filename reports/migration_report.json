@@ -1,0 +1,269 @@
+{
+ "tables": [
+  {
+   "table": "colors",
+   "source": 275,
+   "migrated": 275,
+   "merged": 0,
+   "rejected": 0,
+   "ok": true
+  },
+  {
+   "table": "themes",
+   "source": 496,
+   "migrated": 496,
+   "merged": 0,
+   "rejected": 0,
+   "ok": true
+  },
+  {
+   "table": "part_categories",
+   "source": 76,
+   "migrated": 76,
+   "merged": 0,
+   "rejected": 0,
+   "ok": true
+  },
+  {
+   "table": "parts",
+   "source": 64909,
+   "migrated": 64903,
+   "merged": 0,
+   "rejected": 6,
+   "ok": true
+  },
+  {
+   "table": "sets",
+   "source": 28556,
+   "migrated": 28547,
+   "merged": 0,
+   "rejected": 9,
+   "ok": true
+  },
+  {
+   "table": "set_parts",
+   "source": 1358350,
+   "migrated": 1358134,
+   "merged": 0,
+   "rejected": 216,
+   "ok": true
+  }
+ ],
+ "checks": [
+  {
+   "check": "rows reconcile: colors",
+   "ok": true,
+   "detail": "275 = 275 migrated + 0 merged + 0 rejected"
+  },
+  {
+   "check": "rows reconcile: themes",
+   "ok": true,
+   "detail": "496 = 496 migrated + 0 merged + 0 rejected"
+  },
+  {
+   "check": "rows reconcile: part_categories",
+   "ok": true,
+   "detail": "76 = 76 migrated + 0 merged + 0 rejected"
+  },
+  {
+   "check": "rows reconcile: parts",
+   "ok": true,
+   "detail": "64,909 = 64,903 migrated + 0 merged + 6 rejected"
+  },
+  {
+   "check": "rows reconcile: sets",
+   "ok": true,
+   "detail": "28,556 = 28,547 migrated + 0 merged + 9 rejected"
+  },
+  {
+   "check": "rows reconcile: set_parts",
+   "ok": true,
+   "detail": "1,358,350 = 1,358,134 migrated + 0 merged + 216 rejected"
+  },
+  {
+   "check": "primary key unique: colors (color_id)",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "primary key unique: themes (theme_id)",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "primary key unique: part_categories (part_cat_id)",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "primary key unique: parts (part_num)",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "primary key unique: sets (set_num)",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "primary key unique: set_parts (set_num, part_num, color_id, is_spare)",
+   "ok": true,
+   "detail": "0 duplicates"
+  },
+  {
+   "check": "foreign key: themes.parent_id -> themes.theme_id",
+   "ok": true,
+   "detail": "0 orphans"
+  },
+  {
+   "check": "foreign key: parts.part_cat_id -> part_categories.part_cat_id",
+   "ok": true,
+   "detail": "0 orphans"
+  },
+  {
+   "check": "foreign key: sets.theme_id -> themes.theme_id",
+   "ok": true,
+   "detail": "0 orphans"
+  },
+  {
+   "check": "foreign key: set_parts.set_num -> sets.set_num",
+   "ok": true,
+   "detail": "0 orphans"
+  },
+  {
+   "check": "foreign key: set_parts.part_num -> parts.part_num",
+   "ok": true,
+   "detail": "0 orphans"
+  },
+  {
+   "check": "foreign key: set_parts.color_id -> colors.color_id",
+   "ok": true,
+   "detail": "0 orphans"
+  },
+  {
+   "check": "column types: colors",
+   "ok": true,
+   "detail": "all match"
+  },
+  {
+   "check": "column types: themes",
+   "ok": true,
+   "detail": "all match"
+  },
+  {
+   "check": "column types: part_categories",
+   "ok": true,
+   "detail": "all match"
+  },
+  {
+   "check": "column types: parts",
+   "ok": true,
+   "detail": "all match"
+  },
+  {
+   "check": "column types: sets",
+   "ok": true,
+   "detail": "all match"
+  },
+  {
+   "check": "column types: set_parts",
+   "ok": true,
+   "detail": "all match"
+  },
+  {
+   "check": "piece total conserved",
+   "ok": true,
+   "detail": "4,703,096 = 4,702,638 migrated + 458 rejected"
+  },
+  {
+   "check": "per-set piece totals match",
+   "ok": true,
+   "detail": "28,547 sets compared, 0 mismatches"
+  },
+  {
+   "check": "every set number accounted for",
+   "ok": true,
+   "detail": "28,553 distinct, 0 unaccounted"
+  },
+  {
+   "check": "injected defects caught",
+   "ok": true,
+   "detail": "21/21 caught"
+  }
+ ],
+ "reject_reasons": [
+  {
+   "table": "parts",
+   "reason": "duplicate_identical",
+   "rows": 3
+  },
+  {
+   "table": "parts",
+   "reason": "fk_missing:part_cat_id->part_categories",
+   "rows": 3
+  },
+  {
+   "table": "set_parts",
+   "reason": "parent_rejected:sets",
+   "rows": 204
+  },
+  {
+   "table": "set_parts",
+   "reason": "fk_missing:color_id->colors",
+   "rows": 3
+  },
+  {
+   "table": "set_parts",
+   "reason": "invalid_value:Spare",
+   "rows": 3
+  },
+  {
+   "table": "set_parts",
+   "reason": "out_of_range:quantity",
+   "rows": 3
+  },
+  {
+   "table": "set_parts",
+   "reason": "parent_rejected:parts",
+   "rows": 3
+  },
+  {
+   "table": "sets",
+   "reason": "duplicate_conflict",
+   "rows": 6
+  },
+  {
+   "table": "sets",
+   "reason": "invalid_value:Yr",
+   "rows": 3
+  }
+ ],
+ "injected_defects": {
+  "duplicate_identical": 3,
+  "orphan_category": 3,
+  "duplicate_conflict": 3,
+  "invalid_year": 3,
+  "orphan_colour": 3,
+  "zero_quantity": 3,
+  "invalid_boolean": 3
+ },
+ "missed_defects": [],
+ "export_stats": {
+  "csv_rows": {
+   "colors": 275,
+   "themes": 496,
+   "part_categories": 76,
+   "parts": 64906,
+   "sets": 28553,
+   "inventories": 47820,
+   "inventory_parts": 1570322
+  },
+  "inventories_used_latest_version": 28553,
+  "inventories_skipped_older_version": 1953,
+  "inventories_skipped_not_a_set": 17314,
+  "inventory_parts_exported": 1358287,
+  "inventory_parts_skipped_with_their_inventory": 212035,
+  "sets_without_inventory": 8636
+ },
+ "ok": true
+}
